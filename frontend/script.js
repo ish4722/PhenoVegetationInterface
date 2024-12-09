@@ -18,65 +18,57 @@ function changeImage() {
 setInterval(changeImage, 2000);
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    // File input handling
+document.querySelector(".generate-btn").addEventListener("click", async () => {
+    const formData = new FormData();
     const uploadInput = document.getElementById("upload-input");
-    const generateBtn = document.querySelector(".generate-btn");
+    const startDate = document.querySelector('input[type="date"]:nth-child(1)').value;
+    const endDate = document.querySelector('input[type="date"]:nth-child(2)').value;
 
-    // Uploading files
-    generateBtn.addEventListener("click", async () => {
-        const files = uploadInput.files;
+    // Collect uploaded files
+    for (let file of uploadInput.files) {
+        formData.append("images", file);
+    }
 
-        // Ensure at least one file is selected
-        if (files.length === 0) {
-            alert("Please upload at least one image.");
+    // Collect start and end dates
+    formData.append("start_date", startDate);
+    formData.append("end_date", endDate);
+
+    // Collect filters
+    document.querySelectorAll(".remove-images input[type=checkbox]").forEach((checkbox) => {
+        if (checkbox.checked) {
+            formData.append("filters", checkbox.nextSibling.textContent.trim());
+        }
+    });
+
+    try {
+        const response = await fetch("http://127.0.0.1:5000/process", {
+            method: "POST",
+            body: formData,
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+            alert(`Error: ${error.error}`);
             return;
         }
 
-        const formData = new FormData();
+        const data = await response.json();
 
-        // Append files to FormData
-        for (let file of files) {
-            formData.append("images", file);
-        }
+        // Display the graph
+        const graphImg = document.createElement("img");
+        graphImg.src = `http://127.0.0.1:5000${data.graph_path}`;
+        graphImg.alt = "Generated Vegetation Graph";
+        document.body.appendChild(graphImg);
 
-        // Fetch date values
-        const dateInputs = document.querySelectorAll(".calendar-box input");
-        const startDate = dateInputs[0].value;
-        const endDate = dateInputs[1].value;
-
-        if (startDate && endDate) {
-            formData.append("start_date", startDate);
-            formData.append("end_date", endDate);
-        }
-
-        // Fetch checkboxes
-        const checkboxes = document.querySelectorAll(".remove-images input[type='checkbox']");
-        checkboxes.forEach((checkbox) => {
-            if (checkbox.checked) {
-                formData.append("filters", checkbox.parentNode.textContent.trim());
-            }
-        });
-
-        // Send data to the Flask server
-        try {
-            const response = await fetch("http://127.0.0.1:5000/process", {
-                method: "POST",
-                body: formData,
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                alert("Graph generated successfully!");
-                console.log("Graph Data:", data);
-                // Handle displaying the graph data or any other UI updates
-            } else {
-                const error = await response.text();
-                alert(`Error: ${error}`);
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            alert("An error occurred while generating the graph. Please try again.");
-        }
-    });
+        // Provide Excel download link
+        const excelLink = document.createElement("a");
+        excelLink.href = `http://127.0.0.1:5000${data.excel_path}`;
+        excelLink.textContent = "Download Vegetation Report (Excel)";
+        excelLink.download = "vegetation_report.xlsx";
+        document.body.appendChild(excelLink);
+    } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred while processing your request.");
+    }
 });
+
