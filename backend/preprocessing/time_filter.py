@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 
-def filter_images_by_time(image_dir, start_time, end_time):
+def apply_time_filter(image_dir, start_time, end_time):
     """Filter images in a directory based on timestamps."""
     filtered_images = []
     for file_name in os.listdir(image_dir):

@@ -1,5 +1,5 @@
 from config import *
-from backend.preprocessing.time_filter import filter_images_by_time
+from backend.preprocessing.time_filter import apply_time_filter
 from backend.preprocessing.filters import detect_blurred_phenocam, detect_snow
 from backend.segmentation.model import load_efficientnet_model, predict_masks
 from backend.segmentation.clustering import perform_clustering
@@ -9,13 +9,13 @@ import cv2
 
 def main():
     # Step 1: Filter images
-    filtered_images = filter_images_by_time(IMAGE_DIR, START_TIME, END_TIME)
+    filtered_images = apply_time_filter(IMAGE_DIR, START_TIME, END_TIME)
     
     # Step 2: Apply filters
     for image_path in filtered_images:
         image = cv2.imread(image_path)
         if detect_blurred_phenocam(image):
-            print(f"{image_path} is blurred.")
+            print(f"{image_path} is blurred.") 
         if detect_snow(image):
             print(f"{image_path} is snowy.")
 
