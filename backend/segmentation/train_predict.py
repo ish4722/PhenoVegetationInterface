@@ -37,7 +37,7 @@ def train_model(dataset_path, model_save_path, n_classes, backbone, lr, epochs, 
     )
     model.save(model_save_path)
 
-def predict(model_path, test_dataloader):
+def predict_images(model_path, test_dataloader):
     """Load the model and perform predictions."""
     if not os.path.exists(model_path):
         raise FileNotFoundError(f"Model file not found at {model_path}. Please train the model first.")

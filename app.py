@@ -6,6 +6,8 @@ from backend.segmentation.train_predict import predict_images
 from backend.analysis.vegetation_indices import calculate_indices
 from backend.analysis.excel_writer import create_excel
 import uuid  # To generate unique filenames
+from config import *
+
 
 app = Flask(__name__)
 
@@ -46,7 +48,7 @@ def process():
         filtered_images = apply_filters(filtered_images, filters)
 
         # Step 4: Predict Segmentation with Model
-        segmentation_results = predict_images(filtered_images)
+        segmentation_results = predict_images(MODEL_PATH,filtered_images)
 
         # Step 5: Calculate Vegetation Indices
         vegetation_data = calculate_indices(segmentation_results)

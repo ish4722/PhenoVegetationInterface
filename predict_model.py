@@ -3,7 +3,7 @@ from backend.segmentation.train_predict import predict
 from backend.preprocessing.dataset_loader import Dataset, Dataloader
 from sklearn.model_selection import train_test_split
 
-if __name__ == "__main__":
+def predict():
     # Initialize dataset and dataloader for predictions
     print("Initializing dataset...")
     dataset = Dataset(DATASET_PATH, n_classes=N_CLASSES)
@@ -15,5 +15,5 @@ if __name__ == "__main__":
     print(f"Loading model from {MODEL_SAVE_PATH}...")
     predictions = predict(MODEL_SAVE_PATH, test_dataloader)
 
-    print("Prediction complete.")
+    return predictions
     # Add any visualization or evaluation code here
