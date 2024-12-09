@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pheno AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add Lato font -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Pheno AI</h1>
+        <button class="login-btn">Login/Sign up</button>
+    </header>
+
+    <!-- Intro Section -->
+    <section class="intro-section">
+        <div class="intro-content">
+            <h2>Unlock the Power of Your Images with Advanced Vegetation Analysis</h2>
+            <p>
+                Welcome to PhenoAI, where technology meets nature! 
+                We provide insights that empower smarter decisions for agriculture, forestry, and beyond. 
+                Simply upload your images, and our cutting-edge machine learning algorithms 
+                will calculate detailed vegetation indices tailored to your needs.
+            </p>
+        </div>
+        <div class="intro-image">
+            <img id="slider-image" src="1.JPG" alt="Vegetation Analysis">
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section class="upload-section">
+        <h2>Let's get started!</h2>
+        <form>
+            <div class="upload-box">
+                <label for="upload-input">Upload the input images:</label>
+                <input id="upload-input" type="file" multiple>
+            </div>
+            <div class="calendar-box">
+                <input type="date" placeholder="Start Date">
+                <span>to</span>
+                <input type="date" placeholder="End Date">
+            </div>
+            <div class="remove-images">
+                <label>Remove particular kind of images:</label>
+                <label><input type="checkbox"> Blurry</label>
+                <label><input type="checkbox"> Snowy</label>
+                <label><input type="checkbox"> Foggy</label>
+            </div>
+            <button type="button" class="generate-btn">Generate Graph</button>
+        </form>
+    </section>
+
+    <script>
+        // JavaScript Logic for Image Slider
+        document.addEventListener("DOMContentLoaded", () => {
+            const imageLinks = [
+                "1.JPG",
+                "2.JPG",
+                "3.JPG",
+                "4.JPG"
+            ];
+
+            let currentIndex = 0;
+            const sliderImage = document.getElementById("slider-image");
+
+            function changeImage() {
+                currentIndex = (currentIndex + 1) % imageLinks.length;
+                sliderImage.src = imageLinks[currentIndex];
+            }
+
+            // Change the image every 2 seconds
+            setInterval(changeImage, 2000);
+        });
+    </script>
+</body>
+</html>
