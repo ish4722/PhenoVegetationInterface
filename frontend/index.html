@@ -53,27 +53,7 @@
         </form>
     </section>
 
-    <script>
-        // JavaScript Logic for Image Slider
-        document.addEventListener("DOMContentLoaded", () => {
-            const imageLinks = [
-                "1.JPG",
-                "2.JPG",
-                "3.JPG",
-                "4.JPG"
-            ];
+    <script src="script.js"></script>
 
-            let currentIndex = 0;
-            const sliderImage = document.getElementById("slider-image");
-
-            function changeImage() {
-                currentIndex = (currentIndex + 1) % imageLinks.length;
-                sliderImage.src = imageLinks[currentIndex];
-            }
-
-            // Change the image every 2 seconds
-            setInterval(changeImage, 2000);
-        });
-    </script>
 </body>
 </html>
