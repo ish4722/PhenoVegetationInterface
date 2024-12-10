@@ -58,13 +58,13 @@ def process():
         create_excel(vegetation_data, excel_path)
 
         # Step 7: Generate Graph
-        graph_path = os.path.join(OUTPUT_FOLDER, "vegetation_graph.png")
-        vegetation_data.plot_graph(output_path=graph_path)  # Assuming `plot_graph` is implemented in `vegetation_data`
+        # graph_path = os.path.join(OUTPUT_FOLDER, "vegetation_graph.png")
+        # vegetation_data.plot_graph(output_path=graph_path)  # Assuming `plot_graph` is implemented in `vegetation_data`
 
         # Step 8: Return Files to User
         return jsonify({
             "excel_path": f"/download/excel/{os.path.basename(excel_path)}",
-            "graph_path": f"/download/graph/{os.path.basename(graph_path)}"
+            # "graph_path": f"/download/graph/{os.path.basename(graph_path)}"
         })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
