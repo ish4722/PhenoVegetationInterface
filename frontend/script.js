@@ -54,11 +54,11 @@ document.querySelector(".generate-btn").addEventListener("click", async () => {
 
         const data = await response.json();
 
-        // Display the graph
-        const graphImg = document.createElement("img");
-        graphImg.src = `http://127.0.0.1:5000${data.graph_path}`;
-        graphImg.alt = "Generated Vegetation Graph";
-        document.body.appendChild(graphImg);
+        // // Display the graph
+        // const graphImg = document.createElement("img");
+        // graphImg.src = `http://127.0.0.1:5000${data.graph_path}`;
+        // graphImg.alt = "Generated Vegetation Graph";
+        // document.body.appendChild(graphImg);
 
         // Provide Excel download link
         const excelLink = document.createElement("a");
