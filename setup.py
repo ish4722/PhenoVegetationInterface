@@ -5,7 +5,7 @@ setup(
     version="0.2",
     description="des",
     long_description="long des",
-    author="Akash Kumar Beniwal",
+    author="Ishan_Garv_Medhansh_GarvJ_Aditi_Chehek_Niviti",
     packages=find_packages(),
     install_requires=[
         'opencv-python',

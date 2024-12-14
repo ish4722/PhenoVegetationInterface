@@ -1,9 +1,9 @@
 // Image Slider Logic
 const imageLinks = [
-                "1.JPG",
-                "2.JPG",
-                "3.JPG",
-                "4.JPG"
+                "/Users/ishan/PhenoVegetationInterface-1/assets/1.JPG",
+                "/Users/ishan/PhenoVegetationInterface-1/assets/2.JPG",
+                "/Users/ishan/PhenoVegetationInterface-1/assets/.JPG",
+                "/Users/ishan/PhenoVegetationInterface-1/assets/4.JPG"
 ];
 
 let currentIndex = 0;

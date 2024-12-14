@@ -14,7 +14,7 @@ N_CLASSES = 3  # 3 classes: background, deciduous, coniferous
 
 # Configuration file
 IMAGE_DIR = "path/to/images"
-MODEL_PATH = "/Users/ishan/Downloads/my_model.h5"
+MODEL_PATH = "/Users/ishan/Downloads/my_model-2.h5"
 OUTPUT_EXCEL = "output.xlsx"
 
 START_TIME = datetime(2019, 9, 5, 18, 30)

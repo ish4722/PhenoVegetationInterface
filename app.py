@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file,render_template
 import os
 from backend.preprocessing.time_filter import apply_time_filter
 from backend.preprocessing.filters import apply_filters
@@ -21,7 +21,7 @@ os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
 @app.route("/")
 def home():
-    return "Pheno AI Flask Server is running!"
+    return render_template('frontend/index.html')
 
 @app.route("/process", methods=["POST"])
 def process():
@@ -69,7 +69,7 @@ def process():
         create_excel(indices_list, excel_path)
 
         # Step 7: Generate Graph
-        graph_path = os.path.join(OUTPUT_FOLDER, "vegetation_graph.png")
+        # graph_path = os.path.join(OUTPUT_FOLDER, "vegetation_graph.png")
         # indices_list.plot_graph(output_path=graph_path)  # Assuming `plot_graph` is implemented in `vegetation_data`
 
         # Step 8: Return Files to User
