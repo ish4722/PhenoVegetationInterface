@@ -264,7 +264,7 @@ Creating ROIs in the vegetation segment...|done
 Extracting Chromatic chromatic coordinate from Images...|done
 Calculating phenological Parameters...|done
 ```
-The analysis object created by this function includes the following functions:
+The analysis object created by this function includes the following functions   :
 
 - *\`showROIs()*\`: This displays the images with selected ROIs.
 - *\`extractGCCParameters()*\`: This function extracts the six phenological parameters for GCC.
